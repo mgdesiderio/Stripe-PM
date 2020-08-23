@@ -1,43 +1,44 @@
 # Accept a Card Payment
-
-Build a simple checkout form to collect card details. Included are some basic build and run scripts you can use to start up the application.
+Here's my app for accepting a card payment for a business called Paul's Hot Salsa. It is a 
+Build a simple checkout form to collect card details. How it works: 
+[TODO]
 
 ## Running the sample
+1. Environment setup
+    ```
+    npm install homebrew
 
-1. Build the server
+    brew tap AdoptOpenJDK/openjdk 
 
-```
-npm install homebrew
+    brew cask install adoptopenjdk8
 
-brew tap AdoptOpenJDK/openjdk 
+    Brew install maven
 
-brew cask install adoptopenjdk8
+    echo 'export PATH="/usr/local/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+    ```
+2. Build the server by entering the follow simple command lines in your terminal. 
+    ```
+    mvn package
+    ```
+3. Run the server
+    ```
+    java -cp target/stripe-card-payment-1.0.0-SNAPSHOT-jar-with-dependencies.jar com.stripe.sample.Server
+    ```
+4. Build the client app (in a new terminal tab)
+   ```
+   npm install
+   ```
+6. Run the client app
+    ```
+    npm start
+    ```
+7. Enable log messages (Optional) (in a new terminal tab)
+    ```
+    stripe login --api-key sk_test_51HJ2hwLb59qJsyMou0Nffblgj5l83abCTQGlhPnn7ilU3RFBSOKdfpfGIaGnBI7HhjKHtXJiA5bFxpHYeHhijrxJ008kUoWYTx
 
-Brew install maven
+    stripe listen --forward-to http://localhost:4242/webhook
+    ```
+7. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 
-echo 'export PATH="/usr/local/opt/openjdk/bin:$PATH"' >> ~/.zshrc
-
-mvn package
-```
-
-2. Run the server
-
-```
-java -cp target/stripe-card-payment-1.0.0-SNAPSHOT-jar-with-dependencies.jar com.stripe.sample.Server
-```
-
-3. Build the client app
-
-```
-npm install
-```
-
-4. Run the client app
-
-```
-npm start
-```
-
-5. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
-
-<Testing info>
+## Test cases
+[TODO]

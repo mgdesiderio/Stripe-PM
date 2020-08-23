@@ -2,6 +2,7 @@ package com.stripe.sample;
 
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -14,6 +15,10 @@ import com.google.gson.annotations.SerializedName;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
+import com.stripe.model.StripeObject;
+import com.stripe.net.ApiResource;
+import com.stripe.model.Event;
+import com.stripe.model.EventDataObjectDeserializer;
 
 public class Server {
   private static Gson gson = new Gson();
@@ -63,6 +68,43 @@ public class Server {
 
       CreatePaymentResponse paymentResponse = new CreatePaymentResponse(intent.getClientSecret());
       return gson.toJson(paymentResponse);
+    });
+
+    post("/webhook", (request, response) -> {
+      String payload = request.body();
+      Event event = null;
+
+      try {
+        event = ApiResource.GSON.fromJson(payload, Event.class);
+      } catch (Exception e) {
+        // Invalid payload
+        response.status(400);
+        return "";
+      }
+
+      // Deserialize the nested object inside the event
+      EventDataObjectDeserializer dataObjectDeserializer = event.getDataObjectDeserializer();
+      StripeObject stripeObject = null;
+      if (dataObjectDeserializer.getObject().isPresent()) {
+        stripeObject = dataObjectDeserializer.getObject().get();
+      } else {
+        // Deserialization failed, probably due to an API version mismatch.
+        // Refer to the Javadoc documentation on `EventDataObjectDeserializer` for
+        // instructions on how to handle this case, or return an error here.
+      }
+
+      // Handle the event
+      if (event.getType().equals("payment_intent.succeeded")) {
+        PaymentIntent paymentIntent = (PaymentIntent) stripeObject;
+        Files.write(
+                Paths.get("log.txt").toAbsolutePath(),
+                String.format("Successful payment id %s for amount %s\r\n", paymentIntent.getId(), paymentIntent.getAmount()).getBytes(),
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND);
+      }
+
+      response.status(200);
+      return "";
     });
   }
 }
