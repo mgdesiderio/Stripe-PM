@@ -13,7 +13,7 @@
 - I used Stripe’s CLI to log into my project downloaded from the integration builder. 
 - I spent most of my time on the integration and this friction log and very little time was spent on the actual website itself as my focus was completing the PaymentIntents integration. 
 
-###Log
+### Log
 
 **Good**
 
