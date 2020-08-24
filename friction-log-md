@@ -1,0 +1,15 @@
+##Context on me as a tester: 
+I am a product manager; I do not write code. I am not trained in writing code. 
+Prior to going through this experience, I browsed Stripe’s API documents to see sample code and checklists for getting started 
+In this document, I am detailing my experience of completing a PaymentIntents API integration using Stripe’s online resources. This document shares highlights and friction I encountered during the process. 
+
+**My process:** 
+I reviewed Stripe’s “Accept a payment” documentation
+I downloaded Stripe CLI for macOS. 
+I came back to the top of said doc and clicked into the immersive version to find an integration builder
+I selected web as my platform, React for the frontend, and Java backend. This automatically populated code into the builder for me to review. 
+I created an account with Stripe and logged into the dashboard. I browsed around the dashboard to view available features, my API test keys, and set up my business (Paul’s Hot Salsa). 
+Once I realized I needed to be logged in, I reconfigured settings in the implementation builder, reviewed the resulting lines of code, and downloaded the project to begin making adjustments to the code. 
+I used Stripe’s CLI to log into my project downloaded from the integration builder. 
+I spent most of my time on the integration and this friction log and very little time was spent on the actual website itself as my focus was completing the PaymentIntents integration. 
+
