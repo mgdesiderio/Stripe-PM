@@ -43,7 +43,17 @@ Here's my app for accepting a card payment for a business called Paul's Hot Sals
 
 ## Let's test some use cases
 1. To accept a payment that does not require authentication, enter 4242424242424242 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay. 
+
+Expected Behavior: You should see a message stating the payment is successful. You should also see the successful payment logged to the log.txt file. 
+
 2. To test a payment that requires authentication, enter 4000002500003155 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay.
 - Test the "Complete Authorization" path to see the experience when a user successfully completes authorization. 
+
+Expected Behavior: You should see a message stating the payment is successful. You should also see the successful payment logged to the log.txt file.
 - Test the "Fail Authorization" path to see the experience when a user fails to complete authorization.
+
+Expected Behavior: You should see a message stating the payment failed authorization. You should not see this payment logged to the log.txt file. 
+
 3. To test a card decline for insufficient funds, enter 4000000000009995 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay.
+
+Expected Behavior: You should see a message stating the payment failed due to insufficient funds. You should not see this payment logged to the log.txt file. 
