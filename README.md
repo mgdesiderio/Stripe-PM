@@ -1,10 +1,11 @@
 # Accept a Card Payment
-Here's my app for accepting a card payment for a business called Paul's Hot Salsa. It is a 
-Build a simple checkout form to collect card details. How it works: 
-[TODO]
+Here's my app for accepting a card payment for a business called Paul's Hot Salsa. It is a simple checkout form to collect card details. Before you begin: 
 
-## Running the sample
-1. Environment setup
+- You'll need to ensure you've downloaded the project and are able to run Java on your computer. 
+- Make sure you have access to your terminal command line tool. 
+
+## Let's get started
+1. Once you've downloaded the project, set up your environment with the following commands:
     ```
     npm install homebrew
 
@@ -38,7 +39,11 @@ Build a simple checkout form to collect card details. How it works:
 
     stripe listen --forward-to http://localhost:4242/webhook
     ```
-7. Go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+7. To run the website locally, go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 
-## Test cases
-[TODO]
+## Let's test some use cases
+1. To accept a payment that does not require authentication, enter 4242424242424242 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay. 
+2. To test a payment that requires authentication, enter 4000002500003155 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay.
+- Test the "Complete Authorization" path to see the experience when a user successfully completes authorization. 
+- Test the "Fail Authorization" path to see the experience when a user fails to complete authorization.
+3. To test a card decline for insufficient funds, enter 4000000000009995 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay.
