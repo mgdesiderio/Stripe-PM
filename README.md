@@ -13,7 +13,7 @@ Here's my app for accepting a card payment for a business called Paul's Hot Sals
 
     brew cask install adoptopenjdk8
 
-    Brew install maven
+    brew install maven
 
     echo 'export PATH="/usr/local/opt/openjdk/bin:$PATH"' >> ~/.zshrc
     ```
