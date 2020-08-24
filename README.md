@@ -33,13 +33,13 @@ Here's my app for accepting a card payment for a business called Paul's Hot Sals
     ```
     npm start
     ```
-7. Enable log messages (Optional) (in a new terminal tab)
+7. Enable logging of successful payments to log.txt (Optional) (Run the following in a new terminal tab)
     ```
     stripe login --api-key sk_test_51HJ2hwLb59qJsyMou0Nffblgj5l83abCTQGlhPnn7ilU3RFBSOKdfpfGIaGnBI7HhjKHtXJiA5bFxpHYeHhijrxJ008kUoWYTx
 
     stripe listen --forward-to http://localhost:4242/webhook
     ```
-7. To run the website locally, go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
+8. To run the website locally, if you have not already been redirected, go to [http://localhost:3000/checkout](http://localhost:3000/checkout)
 
 ## Let's test some use cases
 1. To accept a payment that does not require authentication, enter 4242424242424242 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay. 
@@ -57,3 +57,7 @@ Expected Behavior: You should see a message stating the payment failed authoriza
 3. To test a card decline for insufficient funds, enter 4000000000009995 as the card number, any date in the future as the expiry, any CVV, and any zip. Press Pay.
 
 Expected Behavior: You should see a message stating the payment failed due to insufficient funds. You should not see this payment logged to the log.txt file. 
+
+4. To try an invalid entry, try to enter a MM/YY in the past in the expiry. 
+
+Expected Behavior: You should see a message stating the card's expiration is in the past. When attempting to pay, you will see a payment failure restating the same failure reason. 
