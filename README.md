@@ -5,7 +5,7 @@ Here's my app for accepting a card payment for a business called Paul's Hot Sals
 - Make sure you have access to your terminal command line tool. 
 
 ## Let's get started
-1. Once you've downloaded the project, set up your environment with the following commands:
+1. Once you've downloaded the project and if your environment is not set up, run the following commands:
     ```
     npm install homebrew
 

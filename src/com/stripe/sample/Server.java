@@ -3,6 +3,7 @@ package com.stripe.sample;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import java.sql.Timestamp;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -96,9 +97,10 @@ public class Server {
       // Handle the event
       if (event.getType().equals("payment_intent.succeeded")) {
         PaymentIntent paymentIntent = (PaymentIntent) stripeObject;
+        String message = String.format("%s successful payment id %s for amount %s\r\n", new Timestamp(System.currentTimeMillis()), paymentIntent.getId(), paymentIntent.getAmount());
         Files.write(
                 Paths.get("log.txt").toAbsolutePath(),
-                String.format("Successful payment id %s for amount %s\r\n", paymentIntent.getId(), paymentIntent.getAmount()).getBytes(),
+                message.getBytes(),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND);
       }
